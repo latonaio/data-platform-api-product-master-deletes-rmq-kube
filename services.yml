@@ -9,12 +9,12 @@ spec:
   selector:
     matchLabels:
       run: data-platform-api-product-master-deletes-rmq-kube
-      app: ORDERS
+      app: PRODUCT_MASTER
   template:
     metadata:
       labels:
         run: data-platform-api-product-master-deletes-rmq-kube
-        app: ORDERS
+        app: PRODUCT_MASTER
     spec:
       nodeName: worker
       hostname: data-platform-api-product-master-deletes-rmq-kube
