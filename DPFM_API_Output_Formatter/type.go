@@ -25,10 +25,18 @@ type SDC struct {
 }
 
 type Message struct {
-	General *[]General `json:"General"`
+	General			 	*General 			`json:"General"`
+	BusinessPartner		*[]BusinessPartner	`json:"BusinessPartner"`
 }
 
 type General struct {
-	Product             string `json:"Product"`
-	IsMarkedForDeletion *bool  `json:"IsMarkedForDeletion"`
+	Product             string 				`json:"Product"`
+	IsMarkedForDeletion *bool  				`json:"IsMarkedForDeletion"`
+	BusinessPartners    *[]BusinessPartner  `json:"BusinessPartners"`
+}
+
+type BusinessPartner struct {
+	Product              	string  `json:"Product"`
+	BusinessPartner         int     `json:"BusinessPartner"`
+	IsMarkedForDeletion		*bool   `json:"IsMarkedForDeletion"`
 }

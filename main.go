@@ -1,10 +1,10 @@
 package main
 
 import (
-	dpfm_api_caller "data-platform-api-product-master-cancels-rmq-kube/DPFM_API_Caller"
-	dpfm_api_input_reader "data-platform-api-product-master-cancels-rmq-kube/DPFM_API_Input_Reader"
-	dpfm_api_output_formatter "data-platform-api-product-master-cancels-rmq-kube/DPFM_API_Output_Formatter"
-	"data-platform-api-product-master-cancels-rmq-kube/config"
+	dpfm_api_caller "data-platform-api-product-master-deletes-rmq-kube/DPFM_API_Caller"
+	dpfm_api_input_reader "data-platform-api-product-master-deletes-rmq-kube/DPFM_API_Input_Reader"
+	dpfm_api_output_formatter "data-platform-api-product-master-deletes-rmq-kube/DPFM_API_Output_Formatter"
+	"data-platform-api-product-master-deletes-rmq-kube/config"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -48,8 +48,8 @@ func main() {
 
 func recovery(l *logger.Logger, err *error) {
 	if e := recover(); e != nil {
-		*err = fmt.Errorf("error occurred: %w", e)
-		l.Error(err)
+		*err = fmt.Errorf("error occurred: %+v", e)
+		l.Error("%+v", *err)
 		return
 	}
 }
@@ -78,7 +78,7 @@ func callProcess(rmq *rabbitmq.RabbitmqClient, caller *dpfm_api_caller.DPFMAPICa
 	}
 
 	accepter := getAccepter(&input)
-	res, errs := caller.AsyncOrderCancels(accepter, &input, &output, l)
+	res, errs := caller.AsyncDeletes(accepter, &input, &output, l)
 	if len(errs) != 0 {
 		for _, err := range errs {
 			l.Error(err)
@@ -106,7 +106,7 @@ func getAccepter(input *dpfm_api_input_reader.SDC) []string {
 
 	if accepter[0] == "All" {
 		accepter = []string{
-			"Header", "Item", "ScheduleLine",
+			"General", "BusinessPartner",
 		}
 	}
 	return accepter

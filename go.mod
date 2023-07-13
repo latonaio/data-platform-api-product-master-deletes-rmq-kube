@@ -1,4 +1,4 @@
-module data-platform-api-product-master-cancels-rmq-kube
+module data-platform-api-product-master-deletes-rmq-kube
 
 go 1.20
 

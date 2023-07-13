@@ -78,7 +78,6 @@ type General struct {
 type BusinessPartner struct {
 	Product                string    `json:"Product"`
 	BusinessPartner        int       `json:"BusinessPartner"`
-	BusinessPartnerProduct *string   `json:"BusinessPartnerProduct"`
 	IsMarkedForDeletion    *bool     `json:"IsMarkedForDeletion"`
 	BPPlant                []BPPlant `json:"BPPlant"`
 }
@@ -87,11 +86,10 @@ type BPPlant struct {
 	Product               string            `json:"Product"`
 	BusinessPartner       int               `json:"BusinessPartner"`
 	Plant                 string            `json:"Plant"`
-	AvailabilityCheckType *string           `json:"AvailabilityCheckType"`
 	IsMarkedForDeletion   *bool             `json:"IsMarkedForDeletion"`
 	StorageLocation       []StorageLocation `json:"StorageLocation"`
 	MRPArea               []MRPArea         `json:"MRPArea"`
-	WorkScheduling        []WorkScheduling  `json:"WorkScheduling"`
+	Production       	  []Production 		`json:"Production"`
 	Accounting            []Accounting      `json:"Accounting"`
 }
 
@@ -100,7 +98,6 @@ type StorageLocation struct {
 	BusinessPartner      int    `json:"BusinessPartner"`
 	Plant                string `json:"Plant"`
 	StorageLocation      string `json:"StorageLocation"`
-	InventoryBlockStatus *bool  `json:"InventoryBlockStatus"`
 	IsMarkedForDeletion  *bool  `json:"IsMarkedForDeletion"`
 }
 
@@ -109,21 +106,13 @@ type MRPArea struct {
 	BusinessPartner       int     `json:"BusinessPartner"`
 	Plant                 string  `json:"Plant"`
 	MRPArea               string  `json:"MRPArea"`
-	StorageLocationForMRP *string `json:"StorageLocationForMRP"`
 	IsMarkedForDeletion   *bool   `json:"IsMarkedForDeletion"`
 }
 
-type WorkScheduling struct {
+type Production struct {
 	Product                       string  `json:"Product"`
 	BusinessPartner               int     `json:"BusinessPartner"`
 	Plant                         string  `json:"Plant"`
-	ProductionInvtryManagedLoc    *string `json:"ProductionInvtryManagedLoc"`
-	ProductProcessingTime         *int    `json:"ProductProcessingTime"`
-	ProductionSupervisor          *string `json:"ProductionSupervisor"`
-	ProductProductionQuantityUnit *string `json:"ProductProductionQuantityUnit"`
-	ProdnOrderIsBatchRequired     *bool   `json:"ProdnOrderIsBatchRequired"`
-	PDTCompIsMarkedForBackflush   *bool   `json:"PDTCompIsMarkedForBackflush"`
-	ProductionSchedulingProfile   *string `json:"ProductionSchedulingProfile"`
 	IsMarkedForDeletion           *bool   `json:"IsMarkedForDeletion"`
 }
 
@@ -131,7 +120,5 @@ type Accounting struct {
 	Product             string  `json:"Product"`
 	BusinessPartner     int     `json:"BusinessPartner"`
 	Plant               string  `json:"Plant"`
-	ValuationClass      *string `json:"ValuationClass"`
-	PriceLastChangeDate *string `json:"PriceLastChangeDate"`
 	IsMarkedForDeletion *bool   `json:"IsMarkedForDeletion"`
 }
